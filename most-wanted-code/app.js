@@ -13,6 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
+      searchResults = searchByTrait(people);
       break;
       default:
     app(people); // restart app
@@ -32,11 +33,7 @@ function mainMenu(person, people){
     alert("Could not find that individual.");
     return app(people); // restart
   }
-<<<<<<< HEAD
   //Running Test Commit
-=======
-//First user Story in line below
->>>>>>> 0b62be1504e70688e078442ed9b10dbda39db8ac
   let displayOption = prompt("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   switch(displayOption){
@@ -73,6 +70,24 @@ function searchByName(people){
   })
   // TODO: find the person using the name they entered
   return foundPerson;
+}
+//Search by trait function
+function searchByTrait(people){
+  let foundPeople = "";
+  let traitType = promptFor("Choose trait: Occupation, Height, Weight, Gender, Eye Color", chars);
+  switch (traitType){
+    case "Occupation":
+      let chosenOccupation = promptFor("Choose occupation type", chars);
+      foundPeople = people.filter(function(person){
+        if(person.occupation === chosenOccupation){
+        return true;
+        } 
+        else {
+        return false;
+        }
+    }) 
+  }
+  let foundPersonList = foundPeople; 
 }
 
 // alerts a list of people
