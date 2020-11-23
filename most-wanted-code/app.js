@@ -74,20 +74,72 @@ function searchByName(people){
 //Search by trait function
 function searchByTrait(people){
   let foundPeople = "";
+  
   let traitType = promptFor("Choose trait: Occupation, Height, Weight, Gender, Eye Color", chars);
   switch (traitType){
     case "Occupation":
       let chosenOccupation = promptFor("Choose occupation type", chars);
       foundPeople = people.filter(function(person){
         if(person.occupation === chosenOccupation){
-        return true;
+          return true;
         } 
         else {
-        return false;
+          return false;
         }
-    }) 
+      })
+      break;
+    
+    case "Height":
+      let chosenHeight = promptFor("Choose height", chars);
+      foundPeople = people.filter(function(person){
+        if(person.height === parseInt(chosenHeight)){
+          return true;
+        } 
+        else {
+          return false;
+        }
+      })
+      break;
+
+    case "Weight":
+      let chosenWeight = promptFor("Choose weight", chars);
+      foundPeople = people.filter(function(person){
+        if(person.weight === parseInt(chosenWeight)){
+          return true;
+        } 
+        else {
+          return false;
+        }
+      })
+      break;
+
+    case "Gender":
+      let chosenGender = promptFor("Choose gender", chars);
+      foundPeople = people.filter(function(person){
+        if(person.gender === chosenGender){
+          return true;
+        } 
+        else {
+          return false;
+        }
+      })
+      break;
+
+    case "Eye Color":
+      let chosenEyeColor= promptFor("Choose eye color", chars);
+      foundPeople = people.filter(function(person){
+        if(person.eyeColor === chosenEyeColor){
+          return true;
+        } 
+        else {
+          return false;
+        }
+      })
+      break;
+
+     
   }
-  let foundPersonList = foundPeople; 
+  return foundPeople;
 }
 
 // alerts a list of people
