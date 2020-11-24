@@ -42,7 +42,8 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
-    findFamily(person[0], people);
+    let personfamily = findFamily(person[0], people);
+    displayFamily(personfamily);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -155,7 +156,7 @@ function searchByTwoOrMore(people){
   }
   return foundPeople;
 
-}
+  }
 
 /*
 Search by descendents
@@ -195,6 +196,7 @@ function findDescendents(person, people, descendants = []){
 
 
 function findFamily(person, people){
+let family = [];
 let parents = people.filter(function(searchPerson){
   if(searchPerson.id === person.parents[0] || searchPerson.id === person.parents[1]){
     return true;
@@ -202,7 +204,7 @@ let parents = people.filter(function(searchPerson){
     return false;
   }
 });
-
+family.push(parents);
 let siblings = people.filter(function(searchPerson){
   if((searchPerson.parents[0] === parents[0] || searchPerson.parents[1] === parents[1] || searchPerson.parents[0] === parents[1] || searchPerson.parents[1] === parents[0]) && searchPerson.id !== person.id){
     return true;
@@ -211,10 +213,37 @@ let siblings = people.filter(function(searchPerson){
     return false;
   }
 });
+family.push(siblings);
+let spouse = people.filter(function(searchPerson){
+  if((searchPerson.id === person.currentSpouse)){
+    return true;
+  }
+  else{
+      return false;
+  }
+});
+family.push(spouse);
+return family;
 }
 
 
-
+function displayFamily(family){
+  let familyString = "Family members found";
+  let parentString = "Parents: ";
+  let siblingsString = "Siblings: ";
+  let spouseString = "Spouse: ";
+  parentString += family[0].map(function(person){
+    return " " + person.firstName + " " + person.lastName;
+  }
+  );
+  siblingsString += family[1].map(function(person){
+    return " " + person.firstName + " " + person.lastName;
+  });
+  spouseString += family[2].map(function(person){
+    return " " + person.firstName + " " + person.lastName;
+  });
+  alert(familyString + "\n" + parentString+ "\n" + siblingsString+ "\n" + spouseString);  
+}
 
 // alerts a list of people
 function displayPeople(people){
