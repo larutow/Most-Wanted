@@ -42,6 +42,7 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
+    findFamily(person[0], people);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -183,7 +184,6 @@ function findDescendents(person, people, descendants = []){
       return false;
     }
   });
-  
     kids.forEach(kid => {
       descendants.push(kid);
       findDescendents(kid,people,descendants);
@@ -192,6 +192,27 @@ function findDescendents(person, people, descendants = []){
   return descendants;
 
 }
+
+
+function findFamily(person, people){
+let parents = people.filter(function(searchPerson){
+ if(searchPerson.id === person.parents[0] || searchPerson.id === person.parents[1]){
+ return true;
+}else{
+  return false;
+ }
+});
+let siblings = people.filter(function(searchPerson){
+  if((searchPerson.parents[0] === parents[0] || searchPerson.parents[1] === parents[1] || searchPerson.parents[0] === parents[1] || searchPerson.parents[1] === parents[0]) && searchPerson.id !== person.id){
+    return true;
+  }
+  else{
+    return false;
+  }
+});
+}
+
+
 
 
 // alerts a list of people
