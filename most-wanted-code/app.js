@@ -29,7 +29,7 @@ function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
-  if(!person){
+  if(person.length === 0){
     alert("Could not find that individual.");
     return app(people); // restart
   }
@@ -290,7 +290,7 @@ function yesNo(input){
 // helper function to pass in as default promptFor validation
 function chars(input){
   for(let i = 0; i<input.length; i++){
-    if(parseInt(input[i]) === NaN){
+    if(isNaN(parseInt(input[i]))){
       continue;
     }else{
       return false;
@@ -301,7 +301,9 @@ function chars(input){
 
 function ints(input){
   for(let i = 0; i<input.length; i++){
-    if(parseInt(input[i]) !== NaN){
+    if(!isNaN(parseInt(input[i]))){
+      let x = parseInt(input[i]);
+      console.log(x);
       continue;
     }else{
       return false;
