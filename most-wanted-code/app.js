@@ -34,7 +34,13 @@ function mainMenu(person, people){
     return app(people); // restart
   }
   //Running Test Commit
-  let displayOption = prompt("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
+  if(person.length > 1){
+    alert("Multiple matches found.");
+    displayPeople(person);
+    app(people);// restart
+  }else{
+    let displayOption = prompt("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
+  }
 
   switch(displayOption){
     case "info":
