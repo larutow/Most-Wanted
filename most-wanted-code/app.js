@@ -45,7 +45,7 @@ function mainMenu(person, people){
     break;
     case "descendants":
     // TODO: get person's descendants
-    findDescendents(person[0],people);
+    let descendants = findDescendents(person[0],people);
     break;
     case "restart":
     app(people); // restart
@@ -173,7 +173,7 @@ _
 
 */
 
-function findDescendents(person, people){
+function findDescendents(person, people, descendants = []){
   
   let kids = people.filter(function(searchperson){
     if(searchperson.parents[0] === person.id || searchperson.parents[1] === person.id){
@@ -181,19 +181,14 @@ function findDescendents(person, people){
     }else{
       return false;
     }
-  })
+  });
   
-  //only if kids found search for their kids
-
-    kids.forEach(element => {
-      let x = findDescendents(element,people)
-      for(let i; i < x.length; i++){
-        kids.push(x[i]);
-      }
-      //kids.push(findDescendents(element,people));
+    kids.forEach(kid => {
+      descendants.push(kid);
+      findDescendents(kid,people,descendants);
     });
   
-  return kids;
+  return descendants;
 
 }
 
