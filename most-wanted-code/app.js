@@ -206,7 +206,7 @@ let parents = people.filter(function(searchPerson){
 });
 family.push(parents);
 let siblings = people.filter(function(searchPerson){
-  if((searchPerson.parents[0] === parents[0] || searchPerson.parents[1] === parents[1] || searchPerson.parents[0] === parents[1] || searchPerson.parents[1] === parents[0]) && searchPerson.id !== person.id){
+  if((searchPerson.parents[0] === parents[0].id || searchPerson.parents[1] === parents[1].id || searchPerson.parents[0] === parents[1].id || searchPerson.parents[1] === parents[0].id) && searchPerson.id !== person.id){
     return true;
   }
   else{
