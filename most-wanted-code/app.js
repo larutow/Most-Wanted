@@ -38,13 +38,14 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    // TODO: get person's info
+      displayPerson(person[0]);
     break;
     case "family":
     // TODO: get person's family
     break;
     case "descendants":
     // TODO: get person's descendants
+    findDescendents(person[0],people);
     break;
     case "restart":
     app(people); // restart
@@ -154,6 +155,49 @@ function searchByTwoOrMore(people){
 
 }
 
+/*
+Search by descendents
+A - person
+Search list
+3 people with A as parents
+search list
+4 people with A's kids as parents
+1
+0
+
+A
+Person: BBB
+Kids: CCCC
+D
+_
+
+*/
+
+function findDescendents(person, people){
+  
+  let kids = people.filter(function(searchperson){
+    if(searchperson.parents[0] === person.id || searchperson.parents[1] === person.id){
+      return true;
+    }else{
+      return false;
+    }
+  })
+  
+  //only if kids found search for their kids
+
+    kids.forEach(element => {
+      let x = findDescendents(element,people)
+      for(let i; i < x.length; i++){
+        kids.push(x[i]);
+      }
+      //kids.push(findDescendents(element,people));
+    });
+  
+  return kids;
+
+}
+
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -172,7 +216,6 @@ function displayPerson(person){
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
-
 
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
