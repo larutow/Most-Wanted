@@ -46,6 +46,7 @@ function mainMenu(person, people){
     case "descendants":
     // TODO: get person's descendants
     let descendants = findDescendents(person[0],people);
+    displayPeople(descendants); 
     break;
     case "restart":
     app(people); // restart
