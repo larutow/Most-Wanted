@@ -289,5 +289,12 @@ function yesNo(input){
 
 // helper function to pass in as default promptFor validation
 function chars(input){
+  for(let i = 0; i<input.length; i++){
+    if(parseInt(input[i]) === NaN){
+      continue;
+    }else{
+      return false;
+    }
+  }
   return true; // default validation only
 }
