@@ -196,12 +196,13 @@ function findDescendents(person, people, descendants = []){
 
 function findFamily(person, people){
 let parents = people.filter(function(searchPerson){
- if(searchPerson.id === person.parents[0] || searchPerson.id === person.parents[1]){
- return true;
-}else{
-  return false;
- }
+  if(searchPerson.id === person.parents[0] || searchPerson.id === person.parents[1]){
+    return true;
+  }else{
+    return false;
+  }
 });
+
 let siblings = people.filter(function(searchPerson){
   if((searchPerson.parents[0] === parents[0] || searchPerson.parents[1] === parents[1] || searchPerson.parents[0] === parents[1] || searchPerson.parents[1] === parents[0]) && searchPerson.id !== person.id){
     return true;
