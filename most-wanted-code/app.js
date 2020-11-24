@@ -101,7 +101,7 @@ function searchByTrait(people){
       break;
     
     case "height":
-      let chosenHeight = promptFor("Choose height", chars);
+      let chosenHeight = promptFor("Choose height", ints);
       foundPeople = people.filter(function(person){
         if(person.height === parseInt(chosenHeight)){
           return true;
@@ -113,7 +113,7 @@ function searchByTrait(people){
       break;
 
     case "weight":
-      let chosenWeight = promptFor("Choose weight", chars);
+      let chosenWeight = promptFor("Choose weight", ints);
       foundPeople = people.filter(function(person){
         if(person.weight === parseInt(chosenWeight)){
           return true;
@@ -155,7 +155,7 @@ function searchByTrait(people){
 
 function searchByTwoOrMore(people){
   let foundPeople = people;
-  let numOfTraits = promptFor("How many Critereon would you like to choose from?", chars);
+  let numOfTraits = promptFor("How many Critereon would you like to choose from?", ints);
   
   for(let i = 0; i < numOfTraits; i++){
     foundPeople = searchByTrait(foundPeople)
@@ -291,6 +291,17 @@ function yesNo(input){
 function chars(input){
   for(let i = 0; i<input.length; i++){
     if(parseInt(input[i]) === NaN){
+      continue;
+    }else{
+      return false;
+    }
+  }
+  return true; // default validation only
+}
+
+function ints(input){
+  for(let i = 0; i<input.length; i++){
+    if(parseInt(input[i]) !== NaN){
       continue;
     }else{
       return false;
