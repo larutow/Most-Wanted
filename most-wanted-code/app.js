@@ -148,7 +148,9 @@ function searchByTrait(people){
       })
       break;
 
-     
+    default:
+      alert("Invalid input please try again");
+      searchByTrait(people);
   }
   return foundPeople;
 }
