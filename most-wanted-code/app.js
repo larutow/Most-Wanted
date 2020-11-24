@@ -76,7 +76,7 @@ function searchByTrait(people){
   let foundPeople = "";
   
   let traitType = promptFor("Choose trait: Occupation, Height, Weight, Gender, Eye Color", chars);
-  traitType = String.toLowerCase(traitType);
+  traitType = traitType.toLowerCase();
   switch (traitType){
     case "occupation":
       let chosenOccupation = promptFor("Choose occupation type", chars);
