@@ -89,7 +89,7 @@ function searchByTrait(people){
   traitType = traitType.toLowerCase();
   switch (traitType){
     case "occupation":
-      let chosenOccupation = promptFor("Choose occupation type", chars);
+      let chosenOccupation = promptFor("Choose occupation type: (Programmer, Assistant, Student, Doctor, Nurse, Landscaper, Polition, Architect)", chars);
       foundPeople = people.filter(function(person){
         if(person.occupation === chosenOccupation){
           return true;
@@ -137,7 +137,7 @@ function searchByTrait(people){
       break;
 
     case "eye color":
-      let chosenEyeColor= promptFor("Choose eye color", chars);
+      let chosenEyeColor= promptFor("Choose eye color: (Black, Brown, Hazel, Green, Blue)", chars);
       foundPeople = people.filter(function(person){
         if(person.eyeColor === chosenEyeColor){
           return true;
@@ -155,7 +155,7 @@ function searchByTrait(people){
 
 function searchByTwoOrMore(people){
   let foundPeople = people;
-  let numOfTraits = promptFor("How many Critereon would you like to choose from?", ints);
+  let numOfTraits = promptFor("How many criteria would you like to choose from?", ints);
   
   for(let i = 0; i < numOfTraits; i++){
     foundPeople = searchByTrait(foundPeople)
@@ -164,23 +164,6 @@ function searchByTwoOrMore(people){
 
   }
 
-/*
-Search by descendents
-A - person
-Search list
-3 people with A as parents
-search list
-4 people with A's kids as parents
-1
-0
-
-A
-Person: BBB
-Kids: CCCC
-D
-_
-
-*/
 
 function findDescendents(person, people, descendants = []){
   
