@@ -13,7 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
-      searchResults = searchByTrait(people);
+      searchResults = searchByTwoOrMore(people);
       break;
       default:
     app(people); // restart app
@@ -140,6 +140,17 @@ function searchByTrait(people){
      
   }
   return foundPeople;
+}
+
+function searchByTwoOrMore(people){
+  let foundPeople = people;
+  let numOfTraits = promptFor("How many Critereon would you like to choose from?", chars);
+  
+  for(let i = 0; i < numOfTraits; i++){
+    foundPeople = searchByTrait(foundPeople)
+  }
+  return foundPeople;
+
 }
 
 // alerts a list of people
