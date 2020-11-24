@@ -76,8 +76,9 @@ function searchByTrait(people){
   let foundPeople = "";
   
   let traitType = promptFor("Choose trait: Occupation, Height, Weight, Gender, Eye Color", chars);
+  traitType.toLowerCase();
   switch (traitType){
-    case "Occupation":
+    case "occupation":
       let chosenOccupation = promptFor("Choose occupation type", chars);
       foundPeople = people.filter(function(person){
         if(person.occupation === chosenOccupation){
@@ -89,7 +90,7 @@ function searchByTrait(people){
       })
       break;
     
-    case "Height":
+    case "height":
       let chosenHeight = promptFor("Choose height", chars);
       foundPeople = people.filter(function(person){
         if(person.height === parseInt(chosenHeight)){
@@ -101,7 +102,7 @@ function searchByTrait(people){
       })
       break;
 
-    case "Weight":
+    case "weight":
       let chosenWeight = promptFor("Choose weight", chars);
       foundPeople = people.filter(function(person){
         if(person.weight === parseInt(chosenWeight)){
@@ -113,7 +114,7 @@ function searchByTrait(people){
       })
       break;
 
-    case "Gender":
+    case "gender":
       let chosenGender = promptFor("Choose gender", chars);
       foundPeople = people.filter(function(person){
         if(person.gender === chosenGender){
@@ -125,7 +126,7 @@ function searchByTrait(people){
       })
       break;
 
-    case "Eye Color":
+    case "eye color":
       let chosenEyeColor= promptFor("Choose eye color", chars);
       foundPeople = people.filter(function(person){
         if(person.eyeColor === chosenEyeColor){
